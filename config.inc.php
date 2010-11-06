@@ -1,7 +1,7 @@
 <?php
 
 $app_name       = "";
-$template_dir   = "./template";
+$template_dir   = "./templates";
 $compile_dir    = "./templates_c";
 $config_dir     = "./config";
 $cache_dir      = "./cache";
@@ -17,4 +17,6 @@ $db_config      = array(
 
 require_once './class/database.php';
 require_once './class/smarty.php';
+require_once 'Services/Amazon.php';
+require_once 'amazon.inc.php';
 ?>

@@ -13,5 +13,17 @@
             {/foreach}
         </p>
         {/foreach}
+        <!-- {section name=idx loop=$Books} -->
+        <p>
+            <!-- {$Books[idx].title} -->
+            <img alt="{$Books[idx].title}"  src="{$Books[idx].amazon.LargeImage.URL}" />
+            <!-- {foreach from=$Books[idx] key=k item=v} -->
+                {$k}: {$v}<br />
+            <!-- {/foreach} -->
+        </p>
+
+        <!--{/section}-->
+
+
     </body>
 </html>

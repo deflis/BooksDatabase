@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- ホスト: localhost
--- 生成時間: 2010 年 11 月 05 日 00:23
+-- 生成時間: 2010 年 11 月 06 日 16:13
 -- サーバのバージョン: 5.1.41
 -- PHP のバージョン: 5.3.1
 
@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `books` (
   `illustrator` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `publisher` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `price` int(11) NOT NULL,
   `publish_date` date NOT NULL,
   PRIMARY KEY (`isbn`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -44,14 +43,15 @@ CREATE TABLE IF NOT EXISTS `books` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `password` text COLLATE utf8_unicode_ci NOT NULL,
   `nickname` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `profile` text COLLATE utf8_unicode_ci,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
@@ -61,11 +61,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 CREATE TABLE IF NOT EXISTS `users_books` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `book_isbn` varchar(13) COLLATE utf8_unicode_ci NOT NULL,
-  `read` int(11) NOT NULL,
-  `read_date` date NOT NULL,
+  `isbn` varchar(13) COLLATE utf8_unicode_ci NOT NULL,
+  `read` tinyint(1) NOT NULL,
+  `read_date` date DEFAULT NULL,
   `review_title` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
   `review_body` text COLLATE utf8_unicode_ci,
   `rating` int(11) DEFAULT NULL,
